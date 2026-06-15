@@ -141,6 +141,25 @@ graph TD
 
 ---
 
+## The handbook
+
+The repos above are the runnable core. Around them, this repo is growing into a handbook for
+building **AI systems that don't break in production** - written for senior engineers, tech
+leads, and platform engineers.
+
+| Section | What's in it |
+|---------|--------------|
+| **[REPOSITORIES/](REPOSITORIES/)** | An index card per repo: problem → architecture → lessons → demo |
+| **[SYSTEM-RECIPES/](SYSTEM-RECIPES/)** | Start from what you want to build (a RAG system, an MCP server, an agent team) |
+| **[FIELD-NOTES/](FIELD-NOTES/)** | The long-form essays - token economics, banned probabilistic control flow, production MCP |
+| **[ROADMAP.md](ROADMAP.md)** | What ships next (architectures, security, workflows) and what's deliberately parked |
+| **[NOW.md](NOW.md)** | What I'm actively building this month |
+
+The hook, plainly: most resources teach you to *build AI apps faster*. This one is about
+building **AI systems that don't break**.
+
+---
+
 ## Who built this and why
 
 Five years in enterprise IT operations (SAP, ServiceNow, strict SLAs), then about two
