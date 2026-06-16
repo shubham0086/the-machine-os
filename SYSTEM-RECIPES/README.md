@@ -13,6 +13,7 @@ production systems instead of toy demos.
 | A retrieval system that returns the right thing | [Build a RAG System](build-a-rag-system.md) |
 | A tool server agents can actually share | [Build an MCP Server](build-an-mcp-server.md) |
 | Multiple agents that cooperate without chaos | [Build an Agent Team](build-an-agent-team.md) |
+| A multi-agent system that survives production | [Build a Production Multi-Agent System](build-a-production-multi-agent-system.md) |
 | An agent that audits code/security | [Build a Security Auditor](build-a-security-auditor.md) |
 | A billable AI product | [Build an AI Consultant](build-an-ai-consultant.md) |
 

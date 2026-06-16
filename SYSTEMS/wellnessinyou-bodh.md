@@ -63,14 +63,18 @@ state change. No double-spend, no payment spoofing.
 
 Next.js 15 (App Router) + React 19 web · Expo 54 / React Native mobile · Prisma + Neon Postgres ·
 Upstash Redis (distributed rate limit) · Clerk auth · CrewAI + Gemini 3.5 Flash / 3.1 Pro · Razorpay +
-Stripe · a 51-test Playwright E2E suite (parallelized; runtime cut ~35%).
+Stripe · Sentry with a PII-redaction layer · a 51-test Playwright E2E suite (parallelized; runtime cut ~35%).
 
 ## Honest status
 
-**Shipped and real** (wellnessinyou.in). "BODH" is the brand of the mobile companion in this ecosystem;
-the name is also reused internally for an unrelated React dashboard on the SDLC engine — different
-things, same word. Full source is private (it's a commercial product); what's public is the
-architecture and the engineering decisions.
+The web portal (wellnessinyou.in) is **live**; the **BODH mobile app is in closed app-store beta**
+(TestFlight / Play closed testing) and the product is **pre-revenue — no paying users yet**. That's the
+honest line, and it's still a strong one: the unproven part is distribution/GTM, not the engineering.
+Shipping a cross-platform product solo — web + native mobile + an AI pipeline + payments, security-
+hardened and E2E-tested — is the hard, learnable-by-few part; distribution is the learnable-by-many part
+that comes next. ("BODH" is also reused internally as the name of an unrelated React dashboard on the
+SDLC engine — different things, same word.) Full source is private; what's public is the architecture
+and the engineering decisions.
 
 ## Where it sits now
 
