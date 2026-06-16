@@ -151,8 +151,12 @@ leads, and platform engineers.
 |---------|--------------|
 | **[REPOSITORIES/](REPOSITORIES/)** | An index card per repo: problem → architecture → lessons → demo |
 | **[SYSTEM-RECIPES/](SYSTEM-RECIPES/)** | Start from what you want to build (a RAG system, an MCP server, an agent team) |
+| **[ARCHITECTURES/](ARCHITECTURES/)** | How the pieces fit: agent anatomy, multi-agent orchestration, memory, routing, MCP |
+| **[SYSTEMS/](SYSTEMS/)** | Deep write-ups of systems that shipped: the Sovereign SDLC engine, Agency OS, the live RAG chatbot |
+| **[SECURITY/](SECURITY/)** | Real incidents and real guards: secret rotation, repo hygiene, agent execution safety |
+| **[WORKFLOWS/](WORKFLOWS/)** | How I actually work: the self-healing context loop, reality-driven development, publishing compliance |
 | **[FIELD-NOTES/](FIELD-NOTES/)** | The long-form essays - token economics, banned probabilistic control flow, production MCP |
-| **[ROADMAP.md](ROADMAP.md)** | What ships next (architectures, security, workflows) and what's deliberately parked |
+| **[ROADMAP.md](ROADMAP.md)** | What's shipped, what ships next, and what's deliberately parked |
 | **[NOW.md](NOW.md)** | What I'm actively building this month |
 
 The hook, plainly: most resources teach you to *build AI apps faster*. This one is about
