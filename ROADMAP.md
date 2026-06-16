@@ -20,9 +20,9 @@ only graduates into the repo once it has real, runnable, or cited material behin
 ## Shipped (v2 - depth)
 
 - [x] **ARCHITECTURES/** - agent anatomy, multi-agent orchestration, memory, routing/resilience, MCP
-- [x] **SECURITY/** - output sanitization, secret/key rotation, public-repo hygiene, agent execution safety (real incidents + engine guards, not a generic OWASP restatement)
+- [x] **SECURITY/** - output sanitization, secret/key rotation, public-repo hygiene, agent execution safety, the MCP gateway threat model (real incidents + engine guards, not a generic OWASP restatement)
 - [x] **WORKFLOWS/** - the Claude Code self-healing loop, reality-driven development, repo-publishing compliance
-- [x] **SYSTEMS/** - deep write-ups of the production systems (Sovereign SDLC engine, Agency OS, the live portfolio RAG chatbot)
+- [x] **SYSTEMS/** - deep write-ups of the production systems (Sovereign SDLC engine, Agency OS as a system-of-systems, WellnessInYou/BODH shipped product, the live portfolio RAG chatbot)
 
 > CI/CD for agents is *not* shipped under WORKFLOWS — there's no real CI/CD pipeline in these systems
 > yet, so it stays parked below rather than written up from theory.
