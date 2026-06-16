@@ -58,10 +58,11 @@ safe loop.
 
 When the agent reaches outside itself — MCP servers, third-party tools — the safe default is a
 **self-hosted gateway with per-agent capability scoping**, never a raw connection to an unvetted
-server. The 2025 MCP wave shipped a lot of insecure servers (multiple CVEs, including in
-widely-used reference servers, plus registry-poisoning research); a gateway gives you one place to
-enforce auth, scope capabilities, and log every tool call. See
-[ARCHITECTURES/mcp-integration](../ARCHITECTURES/mcp-integration.md).
+server. The 2025–2026 MCP wave shipped a lot of insecure servers (a burst of CVEs, supply-chain
+incidents, and registry-poisoning research); a gateway gives you one place to enforce auth, scope
+capabilities, pin tool descriptions, and log every tool call. The full threat model — the five attack
+classes, the seven mandatory controls, and the per-agent capability table — is its own note:
+[The MCP gateway: security isolation](mcp-gateway-security-isolation.md).
 
 ## Where it sits now
 

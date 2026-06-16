@@ -15,6 +15,7 @@ guard from code that shipped** — what happened, what the fix was, and the patt
 | [Secrets & key rotation](secrets-and-key-rotation.md) | A live API key found inside a public-repo `.env`; rotate-and-relocate to a non-git parent dir | Real env-security fix |
 | [Public-repo hygiene](public-repo-hygiene.md) | Internal strategy/positioning docs found in a published repo; removal + `.gitignore` hardening | Real portfolio audit |
 | [Agent execution safety](agent-execution-safety.md) | Guarding an agent that writes files and runs git: banned calls, protected files, injection-safe rollback | Sovereign SDLC engine guards |
+| [The MCP gateway: security isolation](mcp-gateway-security-isolation.md) | The 5 MCP attack classes, the 7 gateway controls, capability scoping — adopt MCP without exposing an autonomous engine | Designed architecture + threat model |
 
 ---
 

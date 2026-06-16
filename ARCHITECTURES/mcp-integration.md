@@ -32,10 +32,11 @@ honest about that gap, not a claim to have closed it.
 
 MCP went from an Anthropic proposal to a broadly adopted tool-protocol standard over 2025, with
 client support across major agent runtimes. The 2026 reality is two-sided: the protocol is genuinely
-useful *and* the rush produced a wave of insecure servers (the security note on
-[agent execution safety](../SECURITY/agent-execution-safety.md) covers why an MCP gateway, not raw
-connections, is the safe default). Standardising the surface is progress; it does not absolve you of
-the tenant isolation and input validation the protocol itself doesn't enforce.
+useful *and* the rush produced a wave of insecure servers. The dedicated threat model —
+[The MCP gateway: security isolation](../SECURITY/mcp-gateway-security-isolation.md) — covers the five
+attack classes and why a self-hosted gateway, not raw connections, is the only safe way to give an
+autonomous engine tools. Standardising the surface is progress; it does not absolve you of the tenant
+isolation and input validation the protocol itself doesn't enforce.
 
 ---
 
