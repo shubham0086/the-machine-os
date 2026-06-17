@@ -35,9 +35,12 @@ are exactly the problem these address.
 
 **Signal vs. hype:** pure signal, and under-hyped relative to its importance. "Agent identity" is just
 service-account discipline catching up to the fact that the service account can now be *talked into*
-things. **Where this work stands:** has *capability scoping* (which tools a role may call) but not *agent
-identity* (who the agent is, what credential it carries, how that's scoped and revoked). This is the most
-natural extension of the security work already here, and the highest-leverage one.
+things. **Where this work stands:** had *capability scoping* (which tools a role may call) but not *agent
+identity* (who the agent is, what credential it carries, how that's scoped and revoked) — so that became
+the first forward bet built: [agent-identity](../REPOSITORIES/agent-identity.md), a scoped /
+short-lived / signed credential broker with audit and revocation, written up in
+[SECURITY/agent identity & authz](../SECURITY/agent-identity-and-authz.md). The most natural extension of
+the security work already here, and the highest-leverage one.
 
 ## 3. Smaller, specialised models (the cost curve bends)
 
@@ -66,9 +69,11 @@ catastrophic instead of annoying — the [49-files collapse](../CASE-STUDIES/pos
 with no human watching. Which is why the genuinely next discipline isn't a new capability at all; it's
 **reliability engineering for agents**: SLOs, error budgets, eval-as-runtime-guardrail, simulation before
 deploy, standardised tracing (OpenTelemetry's GenAI conventions). **Where this work stands:** this is the
-home brand — "systems that don't break" — and it's the most defensible direction precisely because ambient
-agents make it non-optional. The capability frontier and the reliability frontier are the same frontier,
-seen from two sides.
+home brand, and the second forward bet built starts it concretely — [agent-sim](../REPOSITORIES/agent-sim.md),
+a pre-deploy simulation harness that runs an agent through adversarial scenarios and gates on SLOs and
+regression (the runnable form of [eval-driven development](../WORKFLOWS/eval-driven-development.md)). The
+most defensible direction precisely because ambient agents make it non-optional: the capability frontier
+and the reliability frontier are the same frontier, seen from two sides.
 
 ## The through-line
 

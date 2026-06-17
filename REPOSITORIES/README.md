@@ -22,9 +22,11 @@ have, not the repo name you happened to find.
 | [agent-recall](agent-recall.md) | Agents forget past solutions | 9 |
 | [agent-context](agent-context.md) | Token waste re-reading code | 6 |
 | [agent-routing](agent-routing.md) | A single LLM provider goes down | 23 |
+| [agent-sim](agent-sim.md) | Unattended agents ship unsafe behaviour | 15 |
 | [agent-constitution](agent-constitution.md) | Agents drift from their own rules | 6 |
 | [rag-knowledge-engine](rag-knowledge-engine.md) | RAG returns junk | 25 |
 | [mcp-agent-toolkit](mcp-agent-toolkit.md) | Tools have no shared protocol | 13 |
+| [agent-identity](agent-identity.md) | An agent's credential gets hijacked | 21 |
 | [research-agent](research-agent.md) | Research a topic end to end | 9 |
 | [content-analyzer](content-analyzer.md) | Turn a URL into structured data | 4 |
 | [video-engine-starter](video-engine-starter.md) | Turn a brief into a video | demo |

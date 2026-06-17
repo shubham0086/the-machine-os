@@ -40,10 +40,12 @@ gates.
 The runtime that orchestrates agents, manages memory, and produces output is one system. The thing that
 runs tasks at scale, captures the execution trace, grades it, and aggregates results is a *different*
 system. Conflating them means you can only evaluate what you happened to log in production. Kept
-separate, the eval harness can replay a trace, run a regression suite on every change, and — the part
-still on the frontier here — drive the agent through *simulated* scenarios it never saw live. The
+separate, the eval harness can replay a trace, run a regression suite on every change, and drive the
+agent through *simulated* scenarios it never saw live. The runnable version of exactly this is
+[agent-sim](../REPOSITORIES/agent-sim.md): a black-box `agentFn` (the agent harness) driven through
+adversarial scenarios by a separate scorer (the eval harness), gated on SLOs and regression. The
 engine's EventStore (every side effect emits a structured, typed event) is what makes this possible:
-the trace is the substrate both the recovery supervisor and any future eval harness read from.
+the trace is the substrate both the recovery supervisor and the eval harness read from.
 
 ## Where it sits now
 

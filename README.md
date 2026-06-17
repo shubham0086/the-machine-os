@@ -70,6 +70,8 @@ Each repo isolates one hard problem, extracted from production. Grab the one you
 | Agents forget across sessions | [Agent-Scars](https://github.com/shubham0086/Agent-Scars) (failure memory) · [Agent-Recall](https://github.com/shubham0086/Agent-Recall) (solution memory) | 7 · 9 |
 | Token waste re-reading code | [Agent-Context](https://github.com/shubham0086/Agent-Context) (dependency graph + blast radius) | 6 |
 | One LLM provider goes down | [Agent-Routing](https://github.com/shubham0086/Agent-Routing) (multi-provider failover + circuit breaker) | 23 |
+| An unattended agent ships unsafe behaviour | [agent-sim](https://github.com/shubham0086/agent-sim) (pre-deploy simulation: adversarial scenarios, SLO + regression gates) | 15 |
+| An agent's credential gets hijacked | [agent-identity](https://github.com/shubham0086/agent-identity) (scoped, short-lived, signed credentials + audit + revocation) | 21 |
 | Agents drift from their rules | [agent-constitution](https://github.com/shubham0086/agent-constitution) (drift detection) | 6 |
 | RAG returns junk | [rag-knowledge-engine](https://github.com/shubham0086/rag-knowledge-engine) (hybrid BM25+vector RRF + rerank + eval) | 25 |
 | Tools need a standard protocol | [mcp-agent-toolkit](https://github.com/shubham0086/mcp-agent-toolkit) (MCP server: blackboard, scars, cache) | 13 |
@@ -138,6 +140,8 @@ graph TD
 | Prompt injection and secret leakage | Input and output guardrails, tested against real payloads | agentkernel |
 | RAG returning irrelevant chunks | Hybrid BM25 + vector retrieval, RRF fusion, cross-encoder rerank | rag-knowledge-engine |
 | Tools with no shared protocol | An MCP server exposing blackboard, memory, and cache | mcp-agent-toolkit |
+| Unattended agents shipping unsafe behaviour | Pre-deploy simulation: adversarial scenarios, SLO + regression gates | agent-sim |
+| Hijacked agent credentials (confused deputy) | Scoped, short-lived, signed identities + audit + revocation | agent-identity |
 
 ---
 

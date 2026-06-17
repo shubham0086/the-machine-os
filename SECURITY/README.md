@@ -16,6 +16,7 @@ guard from code that shipped** — what happened, what the fix was, and the patt
 | [Public-repo hygiene](public-repo-hygiene.md) | Internal strategy/positioning docs found in a published repo; removal + `.gitignore` hardening | Real portfolio audit |
 | [Agent execution safety](agent-execution-safety.md) | Guarding an agent that writes files and runs git: banned calls, protected files, injection-safe rollback | Sovereign SDLC engine guards |
 | [The MCP gateway: security isolation](mcp-gateway-security-isolation.md) | The 5 MCP attack classes, the 7 gateway controls, capability scoping — adopt MCP without exposing an autonomous engine | Designed architecture + threat model |
+| [Agent identity & authorization](agent-identity-and-authz.md) | Who the agent is, what short-lived scoped credential it carries, audit + revocation — the identity layer above capability scoping | Threat model + runnable broker (agent-identity) |
 
 ---
 
