@@ -152,6 +152,7 @@ leads, and platform engineers.
 | **[REPOSITORIES/](REPOSITORIES/)** | An index card per repo: problem → architecture → lessons → demo |
 | **[SYSTEM-RECIPES/](SYSTEM-RECIPES/)** | Start from what you want to build (a RAG system, an MCP server, an agent team) |
 | **[ARCHITECTURES/](ARCHITECTURES/)** | How the pieces fit: agent anatomy, multi-agent orchestration, memory, routing, MCP |
+| **[AI-ENGINEERING/](AI-ENGINEERING/)** | The craft under the architectures: prompting as a contract, context engineering, evaluation, tool-calling |
 | **[SYSTEMS/](SYSTEMS/)** | Deep write-ups of systems that shipped: the Sovereign SDLC engine, Agency OS, the live RAG chatbot |
 | **[SECURITY/](SECURITY/)** | Real incidents and real guards: secret rotation, repo hygiene, agent execution safety |
 | **[WORKFLOWS/](WORKFLOWS/)** | How I actually work: the self-healing context loop, reality-driven development, publishing compliance |

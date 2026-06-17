@@ -27,12 +27,19 @@ only graduates into the repo once it has real, runnable, or cited material behin
 > CI/CD for agents is *not* shipped under WORKFLOWS — there's no real CI/CD pipeline in these systems
 > yet, so it stays parked below rather than written up from theory.
 
-## Later (v3 - parked on purpose)
+## Shipped (v3 - the craft layer)
+
+- [x] **AI-ENGINEERING/** - prompting as a contract, context engineering, evaluation, tool-calling. Four notes grounded in the real Coder prompt, the SQLite memory-routing policy, the three-layer RAG filter, RAGAS + TrueScore evals, and the deterministic tool boundary — each tied to current 2026 practice (structured output, context engineering, tiered LLM-as-judge, MCP).
+
+> Fine-tuning is deliberately left out of AI-ENGINEERING: none of these systems fine-tune a model
+> (they route across hosted providers), so writing it up would be theory. It stays parked below.
+
+## Later (parked on purpose)
 
 These are real ambitions, not vaporware - but they ship only when there's signal worth
 publishing. Listing them here instead of as empty folders is the whole point.
 
-- [ ] **AI-ENGINEERING/** - prompting, evaluation, context engineering, tool-calling, fine-tuning
+- [ ] **AI-ENGINEERING/fine-tuning** - parked until a real fine-tune ships (the rest of AI-ENGINEERING is live above)
 - [ ] **PLAYBOOKS/** - startup MVP, AI SaaS, consultant engagement, repo audit, security review
 - [ ] **WORKFLOWS/ci-cd** - CI/CD for agents (parked until a real pipeline exists to write up)
 - [ ] **BENCHMARKS/** - models, frameworks, vector DBs, embeddings - *only with real numbers*
