@@ -154,9 +154,11 @@ leads, and platform engineers.
 | **[ARCHITECTURES/](ARCHITECTURES/)** | How the pieces fit: agent anatomy, multi-agent orchestration, memory, routing, MCP |
 | **[AI-ENGINEERING/](AI-ENGINEERING/)** | The craft under the architectures: prompting as a contract, context engineering, evaluation, tool-calling |
 | **[SYSTEMS/](SYSTEMS/)** | Deep write-ups of systems that shipped: the Sovereign SDLC engine, Agency OS, the live RAG chatbot |
+| **[CASE-STUDIES/](CASE-STUDIES/)** | Postmortems and architecture decision records: the 49-garbage-files collapse, doc drift, keeping the engine native |
 | **[SECURITY/](SECURITY/)** | Real incidents and real guards: secret rotation, repo hygiene, agent execution safety |
 | **[WORKFLOWS/](WORKFLOWS/)** | How I actually work: the self-healing context loop, reality-driven development, publishing compliance |
 | **[FIELD-NOTES/](FIELD-NOTES/)** | The long-form essays - token economics, banned probabilistic control flow, production MCP |
+| **[RESEARCH/](RESEARCH/)** | The one forward-looking section: the autonomy-ladder thesis, and where agent systems are heading (A2A, agent identity, small models, ambient) |
 | **[ROADMAP.md](ROADMAP.md)** | What's shipped, what ships next, and what's deliberately parked |
 | **[NOW.md](NOW.md)** | What I'm actively building this month |
 

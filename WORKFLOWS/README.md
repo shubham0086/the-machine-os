@@ -11,6 +11,7 @@ rule.
 |------|----------------------|--------|
 | [Claude Code self-healing loop](claude-code-self-healing-loop.md) | Context dies between sessions; you re-feed it by hand | Hooks-based context system |
 | [Reality-driven development](reality-driven-development.md) | The agent trusts stale docs and hallucinates the system's state | Sovereign SDLC operating rules |
+| [Eval-driven development](eval-driven-development.md) | The agent reports success on output nobody verified | The 49-garbage-files collapse + the audit gates |
 | [Repo publishing compliance](repo-publishing-compliance.md) | "Ship the repo" hides a dozen things that make it unsafe or unusable | Repo-compliance audit |
 
 ---

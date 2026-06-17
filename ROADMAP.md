@@ -34,6 +34,10 @@ only graduates into the repo once it has real, runnable, or cited material behin
 > Fine-tuning is deliberately left out of AI-ENGINEERING: none of these systems fine-tune a model
 > (they route across hosted providers), so writing it up would be theory. It stays parked below.
 
+- [x] **CASE-STUDIES/** - postmortems + ADRs from real `memory/scars.md` and the `INC-*` log: the 49-garbage-files quality collapse (why "it ran" ≠ "it worked"), documentation drift in a fast-moving model market, and the ADR to keep the engine native / rent the tools via MCP. Operational failures and decisions, distinct from the SECURITY guards.
+- [x] **WORKFLOWS/eval-driven-development** - the discipline that came out of the 49-files collapse: write the gate with the feature, gate on substance not "it ran", evals-as-guards, separate the eval harness from the agent harness.
+- [x] **RESEARCH/** - the forward-looking section: the autonomy-ladder thesis (climb only as high as the problem needs; the loop is the dividing line) and where agent systems are heading (A2A, agent identity, small/specialised models, ambient agents - signal vs hype, grounded against this work).
+
 ## Later (parked on purpose)
 
 These are real ambitions, not vaporware - but they ship only when there's signal worth
@@ -43,9 +47,7 @@ publishing. Listing them here instead of as empty folders is the whole point.
 - [ ] **PLAYBOOKS/** - startup MVP, AI SaaS, consultant engagement, repo audit, security review
 - [ ] **WORKFLOWS/ci-cd** - CI/CD for agents (parked until a real pipeline exists to write up)
 - [ ] **BENCHMARKS/** - models, frameworks, vector DBs, embeddings - *only with real numbers*
-- [ ] **CASE-STUDIES/** - production failures, postmortems, architecture decision records
 - [ ] **RESOURCES/** - a curated short list, not an exhaustive link dump
-- [ ] **RESEARCH/** - the autonomy-ladder thesis and where agent systems are heading
 
 ## Explicitly out of scope (here)
 
