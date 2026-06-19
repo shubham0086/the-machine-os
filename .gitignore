@@ -12,3 +12,7 @@ docs/
 node_modules/
 .DS_Store
 *.log
+
+# Raw planning/discussion dumps stay out of the public handbook
+*Disscussion*.txt
+*discussion*.txt

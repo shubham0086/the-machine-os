@@ -1,0 +1,11 @@
+{
+  "name": "ai-engineering",
+  "description": "Engineering skills for AI IDEs: code-review, debug, architecture, system-design, deploy-checklist, incident-response, standup, tech-debt, testing-strategy, and documentation. Each works standalone and gets supercharged when you connect your tools (see CONNECTORS.md).",
+  "version": "1.0.0",
+  "author": {
+    "name": "Shubham Prajapati",
+    "url": "https://github.com/shubham0086"
+  },
+  "homepage": "https://my-portfolio-github-io-beta-five.vercel.app",
+  "keywords": ["ai-engineering", "code-review", "debugging", "architecture", "incident-response", "skills"]
+}

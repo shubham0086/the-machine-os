@@ -21,6 +21,36 @@ extracted the patterns into small repos you can run in a minute. This is the map
 
 ---
 
+## Install the skills
+
+Turn your AI IDE into a senior engineer's workbench. Two commands and you get 10
+engineering skills, available in Claude Code as `/ai-engineering:<skill>`:
+
+```bash
+/plugin marketplace add shubham0086/the-machine-os
+/plugin install ai-engineering@machine-os
+```
+
+| Skill | What it does |
+|-------|--------------|
+| `/code-review` | Security, performance, and correctness review of a diff or PR |
+| `/debug` | Structured reproduce, isolate, diagnose, and fix |
+| `/architecture` | Write or evaluate an architecture decision record (ADR) |
+| `/system-design` | Design a scalable system with NFRs, data model, and a resiliency matrix |
+| `/deploy-checklist` | Pre-deploy verification with rollback triggers |
+| `/incident-response` | Triage, status updates, and a blameless postmortem |
+| `/standup` | Turn recent activity into a yesterday / today / blockers update |
+| `/tech-debt` | Audit and prioritize debt with WSJF scoring |
+| `/testing-strategy` | A test plan balancing coverage, speed, and maintenance |
+| `/documentation` | READMEs, API docs, runbooks, and onboarding guides |
+
+Every skill **works standalone**, no setup or keys. Connect your tools (source control,
+monitoring, project tracker, and more) and the same skills get **supercharged**: they
+pull the context instead of you pasting it. See
+[CONNECTORS.md](plugins/ai-engineering/CONNECTORS.md) for the map.
+
+---
+
 ## What this is
 
 Most "learn agents" resources are either toy demos or 400-page theory. This is neither.
