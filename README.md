@@ -21,10 +21,23 @@ extracted the patterns into small repos you can run in a minute. This is the map
 
 ---
 
-## Install the skills
+## Install and use
 
-Turn your AI IDE into a senior engineer's workbench. Two commands and you get 10
-engineering skills, available in Claude Code as `/ai-engineering:<skill>`:
+Turn your AI IDE into a senior engineer's workbench. There are two pieces, and you
+only need the first:
+
+1. **ai-engineering** : 10 engineering skills. Pure prompts, work standalone, no setup.
+2. **ai-engineering-tools** *(optional)* : MCP tool backends that supercharge the skills
+   with things a prompt alone can't see (today: whole-repo blast radius).
+
+### Prerequisites
+
+| For | You need |
+|-----|----------|
+| The skills (step 1) | [Claude Code](https://claude.com/claude-code) v2.1.3 or newer. Nothing else, no keys. |
+| The optional tools (step 2) | [Node.js](https://nodejs.org) 18+ on your PATH (the tools run via `npx`). |
+
+### Step 1 : install the skills (free, no keys)
 
 ```bash
 /plugin marketplace add shubham0086/the-machine-os
@@ -33,9 +46,7 @@ engineering skills, available in Claude Code as `/ai-engineering:<skill>`:
 ```
 
 The `/reload-plugins` step is what makes the skills appear (the install prints a
-reminder for it). Then invoke any skill with `/ai-engineering:<skill>`, for example
-`/ai-engineering:code-review`, or just describe the task ("review this PR") and the
-matching skill triggers on its own.
+reminder for it). All 10 then show up namespaced as `/ai-engineering:<skill>`.
 
 | Skill | What it does |
 |-------|--------------|
@@ -50,10 +61,47 @@ matching skill triggers on its own.
 | `/testing-strategy` | A test plan balancing coverage, speed, and maintenance |
 | `/documentation` | READMEs, API docs, runbooks, and onboarding guides |
 
-Every skill **works standalone**, no setup or keys. Connect your tools (source control,
-monitoring, project tracker, and more) and the same skills get **supercharged**: they
-pull the context instead of you pasting it. See
+### Step 2 *(optional)* : add the tools to supercharge the skills
+
+The skills work great on a diff you paste in. But built-in code review only sees the
+diff. Install the tools and `/code-review` and `/tech-debt` also see your **whole repo's
+dependency graph**, so they can tell you *"this 3-line change has 12 dependents, here's
+what it can break"*, which the diff alone can never show.
+
+```bash
+/plugin install ai-engineering-tools@machine-os
+/reload-plugins
+```
+
+This plugin adds **no new slash commands**. It runs a small MCP server (`code-graph`)
+in the background; the skills call it automatically when they need it. Requires Node 18+.
+
+### How to use it
+
+Once installed, every skill triggers two ways:
+
+- **Type it:** `/ai-engineering:code-review` (or any skill from the table).
+- **Just ask:** describe the task in plain language, for example *"review this PR before
+  I merge"* or *"is this change safe?"*, and the matching skill fires on its own.
+
+When the tools plugin is also installed, you don't do anything different. The skill
+notices the `code-graph` tool is available and pulls the blast radius in mid-review. No
+extra step, no extra command.
+
+Every skill **works standalone**, no setup or keys. Connect more of your tools (source
+control, monitoring, project tracker) and the same skills get supercharged: they pull
+the context instead of you pasting it. See
 [CONNECTORS.md](plugins/ai-engineering/CONNECTORS.md) for the map.
+
+### Troubleshooting
+
+- **A skill says "No commands match" right after install.** You skipped `/reload-plugins`.
+  Skills do not register until you reload. This is the single most common gotcha.
+- **`/code-review` runs but never mentions blast radius.** The tools plugin isn't
+  installed, or Node 18+ isn't on your PATH. Run `node --version` to check, then redo
+  step 2.
+- **Two `code-review` commands appear.** Claude Code ships its own `code-review`. Yours
+  is always the namespaced `/ai-engineering:code-review`, so they never collide.
 
 > **Status & support.** This is a personal project, maintained in spare time. The skills
 > are content under CC BY 4.0, free to use as-is. Issues and PRs are welcome, but
