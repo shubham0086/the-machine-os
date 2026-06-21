@@ -2,11 +2,16 @@
 name: deploy-checklist
 description: Pre-deployment verification checklist. Use when about to ship a release, deploying a change with database migrations or feature flags, verifying CI status and approvals before going to production, or documenting rollback triggers ahead of time.
 argument-hint: "[service or release name]"
+tier: security-ops
+contract: "1.0"
+requires: [security-report, performance-report]
+produces: [deploy-checklist]
+feeds: [incident-response]
 ---
 
 # /deploy-checklist
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md). This skill follows the [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md) — it appends a `machine_output` block.
 
 Generate a pre-deployment checklist to verify readiness before shipping.
 
@@ -55,6 +60,45 @@ If any of these thresholds are breached, abort and execute the rollback plan imm
 1. [Step 1: Code revert command / build promotion reversion]
 2. [Step 2: Database migration rollback commands if applicable]
 3. [Step 3: Verification checklist for post-rollback recovery]
+```
+
+## Output Contract
+
+This is a **process skill** — it produces a checklist, so it OMITS the scorecard. Append a
+`machine_output` block per [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md). `status` is the readiness
+gate: `complete` when every check passes, `blocked` when any gate fails.
+
+```yaml
+machine_output:
+  skill: deploy-checklist
+  version: "1.0"
+  timestamp: <ISO-8601>
+  status: blocked
+  findings:
+    - id: G1
+      severity: high
+      category: pre-deploy
+      location: ci
+      description: Two integration tests failing on the release branch
+    - id: G2
+      severity: medium
+      category: rollback
+      location: runbook
+      description: No rollback runbook for the new migration
+  recommendations:
+    - id: R1
+      action: Hold the deploy until CI is green
+      effort: low
+      addresses: [G1]
+    - id: R2
+      action: Write the migration rollback steps before shipping
+      effort: low
+      addresses: [G2]
+  artifacts:
+    - deploy-checklist
+  next_actions:
+    - skill: incident-response
+      reason: If a rollback trigger fires post-deploy, escalate here
 ```
 
 ## Customization

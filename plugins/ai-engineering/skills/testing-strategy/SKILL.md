@@ -2,11 +2,16 @@
 name: testing-strategy
 description: Design test strategies and test plans. Trigger with "how should we test", "test strategy for", "write tests for", "test plan", "what tests do we need", or when the user needs help with testing approaches, coverage, or test architecture.
 argument-hint: "<component or system to test>"
+tier: engineering
+contract: "1.0"
+requires: [requirements-spec, system-design]
+produces: [test-plan]
+feeds: [deploy-checklist, code-review]
 ---
 
 # /testing-strategy
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md). This skill follows the [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md) — it appends a `machine_output` block.
 
 Design effective testing strategies balancing coverage, execution speed, and long-term maintenance costs.
 
@@ -45,6 +50,51 @@ Produce a robust test plan document featuring:
 3. **Coverage Metrics & SLIs:** Target coverage bounds, execution speed budgets, and flakiness tolerance limits.
 4. **Concrete Test Examples:** Code structures or pseudocode templates outlining execution paths and assertions for happy, unhappy, and edge cases.
 5. **Coverage Gap Identification:** Highlights of existing testing gaps and priorities for immediate remediation.
+
+## Output Contract
+
+This is an **assessment skill** (it scores current test posture while producing the plan). Append a
+`machine_output` block per [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md). The `test-plan` is the
+artifact.
+
+**Scorecard rubric** (each 0-100, higher is healthier): 90-100 well covered, 75-89 minor gaps,
+50-74 critical paths exposed, below 50 inadequate for safe release.
+
+```yaml
+machine_output:
+  skill: testing-strategy
+  version: "1.0"
+  timestamp: <ISO-8601>
+  status: complete
+  scorecard:
+    coverage: 61
+    critical_path: 70
+    speed: 84
+    reliability: 55
+  findings:
+    - id: F1
+      severity: high
+      category: gap
+      location: checkout flow
+      description: No E2E test on the checkout happy path; highest-revenue flow unguarded
+    - id: F2
+      severity: medium
+      category: flakiness
+      location: integration suite
+      description: 6% flake rate is eroding trust in the suite
+  recommendations:
+    - id: R1
+      action: Add an E2E test covering checkout happy and payment-decline paths
+      effort: medium
+      addresses: [F1]
+  artifacts:
+    - test-plan
+  next_actions:
+    - skill: deploy-checklist
+      reason: Wire the coverage floor and flake budget into the release gate
+    - skill: code-review
+      reason: Enforce coverage on new changes during review
+```
 
 ## If Connectors Available
 

@@ -9,10 +9,10 @@
     {
       "name": "ai-engineering",
       "source": "./plugins/ai-engineering",
-      "description": "10 engineering skills (code-review, debug, architecture, system-design, deploy-checklist, incident-response, standup, tech-debt, testing-strategy, documentation) that work standalone and get supercharged when you connect your tools.",
-      "version": "1.0.0",
+      "description": "22 engineering skills across 3 tiers (Engineering, Security & Operations, Intelligence) that work standalone and get supercharged when you connect your tools. Every skill follows a shared contract (machine_output + skill graph) so outputs compose into a network.",
+      "version": "2.0.0",
       "homepage": "https://my-portfolio-github-io-beta-five.vercel.app",
-      "keywords": ["ai-engineering", "code-review", "debugging", "architecture", "incident-response", "skills", "mcp"]
+      "keywords": ["ai-engineering", "code-review", "security-review", "architecture-review", "rag-review", "task-decomposition", "skills", "mcp"]
     },
     {
       "name": "ai-engineering-tools",

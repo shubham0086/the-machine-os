@@ -2,13 +2,19 @@
 name: architecture
 description: Create or evaluate an architecture decision record (ADR). Use when choosing between technologies (e.g., Kafka vs SQS), documenting a design decision with trade-offs and consequences, reviewing a system design proposal, or designing a new component from requirements and constraints.
 argument-hint: "<decision or system to design>"
+tier: engineering
+contract: "1.0"
+requires: [requirements-spec, system-design]
+produces: [adr]
+feeds: [architecture-review, task-decomposition, documentation]
 ---
 
 # /architecture
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md). This skill follows the [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md) — it appends a `machine_output` block.
 
-Create an Architecture Decision Record (ADR) or evaluate a system design.
+Create an Architecture Decision Record (ADR) or evaluate a system design. For a scored, staff-level
+review of a whole system (not a single decision), use the **architecture-review** skill.
 
 ## Usage
 
@@ -84,6 +90,39 @@ See the **system-design** skill for detailed frameworks on requirements gatherin
 ## Action Items
 1. [ ] [Implementation step]
 2. [ ] [Follow-up verification or telemetry monitoring setup]
+```
+
+## Output Contract
+
+This is a **process skill** — it produces an ADR, so it OMITS the scorecard (use
+`architecture-review` to score a system). Append a `machine_output` block per
+[SKILL-CONTRACT.md](../../SKILL-CONTRACT.md); the decision and its accepted consequences go in
+`findings`.
+
+```yaml
+machine_output:
+  skill: architecture
+  version: "1.0"
+  timestamp: <ISO-8601>
+  status: complete
+  findings:
+    - id: A1
+      severity: medium
+      category: decision
+      location: event-bus
+      description: Chose SQS over Kafka; accepts a lower throughput ceiling for lower ops burden
+  recommendations:
+    - id: R1
+      action: Revisit the decision if sustained throughput exceeds 3k msg/s
+      effort: low
+      addresses: [A1]
+  artifacts:
+    - adr
+  next_actions:
+    - skill: architecture-review
+      reason: Validate the decision in the context of the whole system
+    - skill: documentation
+      reason: Publish the ADR into the decision log
 ```
 
 ## If Connectors Available

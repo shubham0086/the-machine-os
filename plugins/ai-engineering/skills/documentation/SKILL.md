@@ -2,11 +2,16 @@
 name: documentation
 description: Write and maintain technical documentation. Trigger with "write docs for", "document this", "create a README", "write a runbook", "onboarding guide", or when the user needs help with any form of technical writing — API docs, architecture docs, or operational runbooks.
 argument-hint: "<what to document>"
+tier: engineering
+contract: "1.0"
+requires: [api-spec, system-design, code-review-report]
+produces: [docs]
+feeds: []
 ---
 
 # /documentation
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md). This skill follows the [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md) — it appends a `machine_output` block.
 
 Write clear, maintainable technical documentation for different audiences and purposes.
 
@@ -51,6 +56,33 @@ Write clear, maintainable technical documentation for different audiences and pu
 3. **Show, don't tell** — Use standard syntax blocks, schemas, diagrams, and concrete execution outputs.
 4. **Link, don't duplicate** — Link to source control or existing specs. Prevent fragmented, outdated duplication.
 5. **Keep it current** — If code changes, documentation update steps must be part of the PR definition.
+
+## Output Contract
+
+This is a **process skill** — it writes docs, so it OMITS the scorecard. Append a `machine_output`
+block per [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md); doc gaps go in `findings`.
+
+```yaml
+machine_output:
+  skill: documentation
+  version: "1.0"
+  timestamp: <ISO-8601>
+  status: complete
+  findings:
+    - id: D1
+      severity: low
+      category: gap
+      location: README
+      description: Quickstart omits the required environment variables
+  recommendations:
+    - id: R1
+      action: Add an env-var table to the quickstart so first run succeeds
+      effort: low
+      addresses: [D1]
+  artifacts:
+    - docs
+  next_actions: []
+```
 
 ## If Connectors Available
 

@@ -2,11 +2,16 @@
 name: standup
 description: Generate a standup update from recent activity. Use when preparing for daily standup, summarizing yesterday's commits and PRs and ticket moves, formatting work into yesterday/today/blockers, or structuring a few rough notes into a shareable update.
 argument-hint: "[yesterday | today | blockers]"
+tier: security-ops
+contract: "1.0"
+requires: []
+produces: [standup-update]
+feeds: []
 ---
 
 # /standup
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md). This skill follows the [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md) — it appends a `machine_output` block.
 
 Generate a standup update by pulling together recent activity across your tools.
 
@@ -54,6 +59,34 @@ If your tools are connected, just say `/standup` and I'll gather everything auto
 - **Blocked on:** [Detailed explanation of blocker]
 - **Impact:** [How it delays delivery / scope]
 - **Action Plan:** [Who can unblock or what active research is being done to resolve]
+```
+
+## Output Contract
+
+This is a **process skill** — it formats an update, so it OMITS the scorecard. Append a
+`machine_output` block per [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md); blockers go in `findings`
+so a downstream skill or bot can route them.
+
+```yaml
+machine_output:
+  skill: standup
+  version: "1.0"
+  timestamp: <ISO-8601>
+  status: complete
+  findings:
+    - id: B1
+      severity: medium
+      category: blocker
+      location: api-rate-limiting
+      description: Blocked on an upstream rate-limit increase from the vendor
+  recommendations:
+    - id: R1
+      action: Escalate the vendor quota request; pursue a caching workaround meanwhile
+      effort: low
+      addresses: [B1]
+  artifacts:
+    - standup-update
+  next_actions: []
 ```
 
 ## If Connectors Available

@@ -2,11 +2,16 @@
 name: code-review
 description: Review code changes for security, performance, and correctness. Trigger with a PR URL or diff, "review this before I merge", "is this code safe?", or when checking a change for N+1 queries, injection risks, missing edge cases, or error handling gaps.
 argument-hint: "<PR URL, diff, or file path>"
+tier: engineering
+contract: "1.0"
+requires: [diff, source-files]
+produces: [code-review-report]
+feeds: [security-review, performance-review, tech-debt, testing-strategy]
 ---
 
 # /code-review
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md). This skill follows the [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md) — it appends a `machine_output` block.
 
 Review code changes with a structured lens on security, performance, correctness, and maintainability.
 
@@ -98,6 +103,49 @@ If no specific file or URL is provided, ask what to review.
 
 ### Verdict
 [APPROVE] / [REQUEST CHANGES] / [NEEDS DISCUSSION]
+```
+
+## Output Contract
+
+This is an **assessment skill**. After the human-readable review above, append a
+`machine_output` block per [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md).
+
+**Scorecard rubric** (each 0-100): 90-100 ship-ready, 75-89 minor issues, 50-74 needs work
+before merge, below 50 not mergeable.
+- `security` — injection, auth, secrets, deserialization exposure
+- `performance` — N+1, complexity, resource leaks, missing indexes
+- `correctness` — edge cases, concurrency, error handling
+- `maintainability` — naming, SRP, duplication, test coverage
+
+```yaml
+machine_output:
+  skill: code-review
+  version: "1.0"
+  timestamp: <ISO-8601>
+  status: complete
+  scorecard:
+    security: 88
+    performance: 91
+    correctness: 84
+    maintainability: 79
+  findings:
+    - id: F1
+      severity: critical
+      category: security
+      location: api/users.js:42
+      description: SQL built via string interpolation on req.query.id
+  recommendations:
+    - id: R1
+      action: Use a parameterized query for the id lookup
+      effort: low
+      addresses: [F1]
+  artifacts:
+    - code-review-report
+  next_actions:
+    - skill: security-review
+      reason: Confirm the injection fix and sweep for sibling patterns
+    - skill: testing-strategy
+      reason: No regression test covers the malformed-id path
 ```
 
 ## If Connectors Available

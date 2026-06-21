@@ -2,11 +2,16 @@
 name: system-design
 description: Design systems, services, and architectures. Trigger with "design a system for", "how should we architect", "system design for", "what's the right architecture for", or when the user needs help with API design, data modeling, or service boundaries.
 argument-hint: "<system or service to design>"
+tier: engineering
+contract: "1.0"
+requires: [requirements-spec]
+produces: [system-design]
+feeds: [architecture-review, api-design, database-design, task-decomposition]
 ---
 
 # /system-design
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md). This skill follows the [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md) — it appends a `machine_output` block.
 
 Help design highly scalable systems and evaluate complex architectural decisions.
 
@@ -41,6 +46,38 @@ Produce a highly structured, comprehensive system architecture design document c
 2. Architecture Diagram (using Mermaid.js formatting standard).
 3. API Contracts & Database Schema structures (complete with schemas/data-types).
 4. System Resilience and Trade-off Matrix (detailing what we are actively optimizing for vs. what we are trading off).
+
+## Output Contract
+
+This is a **process skill** — it produces a design, so it OMITS the scorecard (use
+`architecture-review` to score an existing design). Append a `machine_output` block per
+[SKILL-CONTRACT.md](../../SKILL-CONTRACT.md); key trade-offs go in `findings`.
+
+```yaml
+machine_output:
+  skill: system-design
+  version: "1.0"
+  timestamp: <ISO-8601>
+  status: complete
+  findings:
+    - id: D1
+      severity: medium
+      category: tradeoff
+      location: write-path
+      description: Async write pipeline chosen; accepts eventual consistency for throughput
+  recommendations:
+    - id: R1
+      action: Document the consistency window and the reconciliation job
+      effort: low
+      addresses: [D1]
+  artifacts:
+    - system-design
+  next_actions:
+    - skill: architecture-review
+      reason: Pressure-test the design against scale and failure modes
+    - skill: database-design
+      reason: Turn the data model sketch into a concrete schema and indexes
+```
 
 ## If Connectors Available
 

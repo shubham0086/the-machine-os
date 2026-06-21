@@ -2,11 +2,16 @@
 name: incident-response
 description: Run an incident response workflow — triage, communicate, and write postmortem. Trigger with "we have an incident", "production is down", an alert that needs severity assessment, a status update mid-incident, or when writing a blameless postmortem after resolution.
 argument-hint: "<incident description or alert>"
+tier: security-ops
+contract: "1.0"
+requires: [alert, deploy-checklist]
+produces: [incident-postmortem]
+feeds: [tech-debt, documentation]
 ---
 
 # /incident-response
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md). This skill follows the [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md) — it appends a `machine_output` block.
 
 Manage an incident from detection through postmortem.
 
@@ -143,6 +148,38 @@ Provide clear, factual updates at a regular cadence. Do not speculate or guess r
 
 ### Lessons Learned
 [Long-term architectural, testing, or communication takeaways from this outage to share across teams.]
+```
+
+## Output Contract
+
+This is a **process skill** — it runs a workflow, so it OMITS the scorecard. Append a
+`machine_output` block per [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md). Use `status: needs-input`
+mid-incident and `complete` once the postmortem is written; action items become `recommendations`.
+
+```yaml
+machine_output:
+  skill: incident-response
+  version: "1.0"
+  timestamp: <ISO-8601>
+  status: complete
+  findings:
+    - id: I1
+      severity: critical
+      category: root-cause
+      location: payments-api
+      description: Connection pool exhausted under a retry storm; 5xx for 22 minutes
+  recommendations:
+    - id: A1
+      action: Add a circuit breaker and cap retries on the payments client
+      effort: medium
+      addresses: [I1]
+  artifacts:
+    - incident-postmortem
+  next_actions:
+    - skill: tech-debt
+      reason: Track the postmortem action items as prioritized debt
+    - skill: documentation
+      reason: Turn the mitigation into a runbook for the next occurrence
 ```
 
 ## If Connectors Available

@@ -26,7 +26,7 @@ extracted the patterns into small repos you can run in a minute. This is the map
 Turn your AI IDE into a senior engineer's workbench. There are two pieces, and you
 only need the first:
 
-1. **ai-engineering** : 10 engineering skills. Pure prompts, work standalone, no setup.
+1. **ai-engineering** : 22 engineering skills across 3 tiers. Pure prompts, work standalone, no setup.
 2. **ai-engineering-tools** *(optional)* : MCP tool backends that supercharge the skills
    with things a prompt alone can't see (today: whole-repo blast radius).
 
@@ -46,20 +46,51 @@ only need the first:
 ```
 
 The `/reload-plugins` step is what makes the skills appear (the install prints a
-reminder for it). All 10 then show up namespaced as `/ai-engineering:<skill>`.
+reminder for it). All 22 then show up namespaced as `/ai-engineering:<skill>`.
+
+The skills are organized into three tiers. The tier is metadata (a `tier:` field), not a
+folder, so install stays one step. Every skill follows the
+[skill contract](plugins/ai-engineering/SKILL-CONTRACT.md): it produces a human-readable
+artifact and appends a machine-readable `machine_output` block, so one skill's output feeds the
+next (`requires` / `produces` / `feeds`). That turns the set from a skill library into a skill
+network.
+
+**Tier 1 : Engineering** (build it right)
 
 | Skill | What it does |
 |-------|--------------|
-| `/code-review` | Security, performance, and correctness review of a diff or PR |
-| `/debug` | Structured reproduce, isolate, diagnose, and fix |
-| `/architecture` | Write or evaluate an architecture decision record (ADR) |
+| `/requirements-analysis` | Turn a vague goal into testable functional + non-functional requirements |
 | `/system-design` | Design a scalable system with NFRs, data model, and a resiliency matrix |
+| `/architecture` | Write or evaluate an architecture decision record (ADR) |
+| `/architecture-review` | Staff-level review of a whole system, scored on scalability/reliability/security/cost/complexity |
+| `/api-design` | Design or review a REST/GraphQL contract (semantics, versioning, idempotency) |
+| `/database-design` | Model a schema; keys, relationships, indexing, SQL-vs-NoSQL fit |
+| `/code-review` | Security, performance, and correctness review of a diff or PR |
+| `/performance-review` | Find and impact-rank bottlenecks (N+1, complexity, hot paths) |
+| `/testing-strategy` | A test plan balancing coverage, speed, and maintenance |
+| `/tech-debt` | Audit and prioritize debt with WSJF scoring |
+| `/debug` | Structured reproduce, isolate, diagnose, and fix |
+| `/documentation` | READMEs, API docs, runbooks, and onboarding guides |
+
+**Tier 2 : Security & Operations** (keep it safe and running)
+
+| Skill | What it does |
+|-------|--------------|
+| `/security-review` | Audit code/API/design for injection, broken access control, and exposure |
+| `/threat-model` | STRIDE threat model: assets, trust boundaries, threats, mitigations |
 | `/deploy-checklist` | Pre-deploy verification with rollback triggers |
 | `/incident-response` | Triage, status updates, and a blameless postmortem |
 | `/standup` | Turn recent activity into a yesterday / today / blockers update |
-| `/tech-debt` | Audit and prioritize debt with WSJF scoring |
-| `/testing-strategy` | A test plan balancing coverage, speed, and maintenance |
-| `/documentation` | READMEs, API docs, runbooks, and onboarding guides |
+
+**Tier 3 : Intelligence** (the autonomy / AI layer)
+
+| Skill | What it does |
+|-------|--------------|
+| `/task-decomposition` | Break a goal into an ordered, dependency-aware task plan |
+| `/agent-design` | Design or review an agent: tools, control loop, guardrails, HITL |
+| `/prompt-review` | Treat a prompt as a contract: clarity, output shape, failure handling |
+| `/rag-review` | Decide the retrieval strategy first, then review the pipeline |
+| `/hallucination-audit` | Claim-by-claim groundedness check on any generated text |
 
 ### Step 2 *(optional)* : add the tools to supercharge the skills
 

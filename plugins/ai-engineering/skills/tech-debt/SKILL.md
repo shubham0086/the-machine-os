@@ -2,11 +2,16 @@
 name: tech-debt
 description: Identify, categorize, and prioritize technical debt. Trigger with "tech debt", "technical debt audit", "what should we refactor", "code health", or when the user asks about code quality, refactoring priorities, or maintenance backlog.
 argument-hint: "[codebase area or scope]"
+tier: engineering
+contract: "1.0"
+requires: [source-files, performance-report, security-report]
+produces: [tech-debt-registry]
+feeds: [task-decomposition, deploy-checklist]
 ---
 
 # /tech-debt
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md). This skill follows the [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md) — it appends a `machine_output` block.
 
 Systematically identify, categorize, and prioritize technical debt using quantitative prioritization scoring.
 
@@ -38,6 +43,47 @@ Produce a highly prioritized technical debt remediation document containing:
 1. **Uncovered Technical Debt Registry Table:** Itemized list with categories, score metrics (BV, RR, JS), and absolute WSJF scores.
 2. **Business Justifications:** Strategic explanations for non-technical stakeholders explaining why resolving these items will directly improve product velocity.
 3. **Phased Remediation Plan:** Phased execution roadmap (e.g., Phase 1 Quick Wins vs Phase 2 Major Initiatives) mapped cleanly to execute alongside standard product sprints.
+
+## Output Contract
+
+This is an **assessment skill**. Append a `machine_output` block per
+[SKILL-CONTRACT.md](../../SKILL-CONTRACT.md). Each finding carries its `wsjf` priority; the
+scorecard is a **health** read (higher is healthier).
+
+**Scorecard rubric** (each 0-100): 90-100 minimal debt, 75-89 manageable, 50-74 actively slowing
+the team, below 50 remediation needed before new work.
+
+```yaml
+machine_output:
+  skill: tech-debt
+  version: "1.0"
+  timestamp: <ISO-8601>
+  status: complete
+  scorecard:
+    code: 72
+    architecture: 65
+    tests: 58
+    dependencies: 80
+  findings:
+    - id: D1
+      severity: high
+      category: test-debt
+      location: services/billing
+      description: Billing module at 22% coverage; high churn, high regression risk
+      wsjf: 4.5
+  recommendations:
+    - id: R1
+      action: Raise billing coverage to 70%, starting with the invoice state machine
+      effort: medium
+      addresses: [D1]
+  artifacts:
+    - tech-debt-registry
+  next_actions:
+    - skill: task-decomposition
+      reason: Sequence the Phase 1 quick wins into tracked tasks
+    - skill: testing-strategy
+      reason: Design the coverage plan for the billing module
+```
 
 ## If Connectors Available
 

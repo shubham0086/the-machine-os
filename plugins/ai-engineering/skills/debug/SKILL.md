@@ -2,11 +2,16 @@
 name: debug
 description: Structured debugging session — reproduce, isolate, diagnose, and fix. Trigger with an error message or stack trace, "this works in staging but not prod", "something broke after the deploy", or when behavior diverges from expected and the cause isn't obvious.
 argument-hint: "<error message or problem description>"
+tier: engineering
+contract: "1.0"
+requires: [error, source-files]
+produces: [debug-report]
+feeds: [code-review, testing-strategy, tech-debt]
 ---
 
 # /debug
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md). This skill follows the [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md) — it appends a `machine_output` block.
 
 Run a structured debugging session to find and fix issues systematically.
 
@@ -82,6 +87,38 @@ Tell me about the problem. Any of these help:
 ### Prevention & Guardrails
 - **Automated Test to Add:** [Unit/Integration test definition to prevent future regression]
 - **Architectural Safeguard:** [Static analysis, runtime constraint, or configuration guard to block this state]
+```
+
+## Output Contract
+
+This is a **process skill** — it diagnoses, so it OMITS the scorecard. After the debug report,
+append a `machine_output` block per [SKILL-CONTRACT.md](../../SKILL-CONTRACT.md). The root cause is
+the load-bearing finding.
+
+```yaml
+machine_output:
+  skill: debug
+  version: "1.0"
+  timestamp: <ISO-8601>
+  status: complete
+  findings:
+    - id: F1
+      severity: critical
+      category: root-cause
+      location: services/cache.js:88
+      description: Cache key omits tenant id; users read each other's cached responses
+  recommendations:
+    - id: R1
+      action: Include tenant id in the cache key and add a regression test
+      effort: low
+      addresses: [F1]
+  artifacts:
+    - debug-report
+  next_actions:
+    - skill: testing-strategy
+      reason: Add the regression test that proves the bug stays fixed
+    - skill: code-review
+      reason: Check sibling cache call sites for the same key omission
 ```
 
 ## If Connectors Available
