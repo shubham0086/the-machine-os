@@ -44,6 +44,7 @@ must never do without a human.
 ├─────────────────────────────────────────────────────────────────┤
 │  SUPERCHARGED (when you connect your tools)                      │
 │  + MCP: design tool access as real MCP servers                   │
+│  + Blackboard: shared state + response cache for multi-agent runs│
 │  + Knowledge base: ground the design in your agent patterns      │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -148,6 +149,10 @@ machine_output:
 
 If **~~MCP** is connected:
 - Design tool access as concrete MCP servers with scoped capabilities, not abstract "tools"
+
+If **~~blackboard** is connected (e.g. the [mcp-agent-toolkit](https://github.com/shubham0086/mcp-agent-toolkit) spoke):
+- Use `blackboard_write` / `blackboard_read` as the inter-agent shared state so agents stay decoupled instead of passing everything through prompts
+- Use `cache_get` / `cache_set` to skip re-paying for identical LLM calls across a run
 
 If **~~knowledge base** is connected:
 - Ground the design in your existing agent patterns and past failure write-ups

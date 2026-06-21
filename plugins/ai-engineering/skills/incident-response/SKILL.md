@@ -196,6 +196,10 @@ If **~~chat** is connected:
 - Post status updates to incident channel
 - Create war room channel
 
+If **~~scar-memory** is connected (e.g. the [mcp-agent-toolkit](https://github.com/shubham0086/mcp-agent-toolkit) spoke):
+- Run `scar_lookup` on the failure signature during triage — a repeat outage often has a recorded resolution that shortens time-to-mitigate
+- After the postmortem, `scar_record` the root cause and fix so the same pattern is caught faster next time
+
 ## Tips
 
 1. **Start writing immediately** — Don't wait for complete information. Update as you learn more.

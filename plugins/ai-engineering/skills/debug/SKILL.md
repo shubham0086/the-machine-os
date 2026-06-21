@@ -135,6 +135,10 @@ If **~~project tracker** is connected:
 - Search for related bug reports or known issues
 - Create a ticket for the fix once identified
 
+If **~~scar-memory** is connected (e.g. the [mcp-agent-toolkit](https://github.com/shubham0086/mcp-agent-toolkit) spoke):
+- Before diagnosing, call `scar_lookup` with the error type and a short context snippet — if this exact failure was seen and resolved before, lead with that known fix instead of re-deriving it
+- After confirming the fix, call `scar_record` so the next occurrence resolves instantly
+
 ## Tips
 
 1. **Share error messages exactly** — Don't paraphrase. The exact text matters.

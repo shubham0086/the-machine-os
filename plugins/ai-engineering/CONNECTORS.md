@@ -27,6 +27,8 @@ can call it automatically.
 | `~~chat` | Posting updates and reading discussion threads | Slack, Discord, Microsoft Teams |
 | `~~incident management` | Paging on-call and tracking live incidents | PagerDuty, Opsgenie, Incident.io |
 | `~~code-graph` | Structural dependency graph + blast radius of a change (who depends on a file) | [agent-context](https://github.com/shubham0086/agent-context) — a Machine OS spoke (see below) |
+| `~~scar-memory` | Failure memory: has this error been seen and resolved before? | [mcp-agent-toolkit](https://github.com/shubham0086/mcp-agent-toolkit) `scar_lookup` / `scar_record` — a Machine OS spoke (see below) |
+| `~~blackboard` | Shared state store for multi-agent runs (write/read/list artifacts) | [mcp-agent-toolkit](https://github.com/shubham0086/mcp-agent-toolkit) `blackboard_*` (+ `cache_*` for LLM response caching) — a Machine OS spoke |
 
 > Both spellings appear in the wild: `~~source control` and `~~source-control` mean the
 > same connector. The skills use the spaced form.
@@ -38,26 +40,43 @@ can call it automatically.
 | Skill | Uses |
 |-------|------|
 | `/code-review` | `~~source control`, `~~project tracker`, `~~knowledge base`, `~~code-graph` |
-| `/debug` | `~~monitoring`, `~~source control`, `~~project tracker` |
+| `/debug` | `~~monitoring`, `~~source control`, `~~project tracker`, `~~scar-memory` |
 | `/architecture` | `~~knowledge base`, `~~project tracker` |
 | `/system-design` | `~~knowledge base`, `~~source control`, `~~project tracker` |
 | `/deploy-checklist` | `~~source control`, `~~CI/CD`, `~~monitoring` |
-| `/incident-response` | `~~monitoring`, `~~incident management`, `~~chat` |
+| `/incident-response` | `~~monitoring`, `~~incident management`, `~~chat`, `~~scar-memory` |
 | `/standup` | `~~source control`, `~~project tracker`, `~~chat` |
 | `/tech-debt` | `~~source control`, `~~project tracker`, `~~knowledge base`, `~~code-graph` |
 | `/testing-strategy` | `~~source control`, `~~CI/CD`, `~~project tracker` |
 | `/documentation` | `~~source control`, `~~knowledge base`, `~~project tracker` |
+| `/agent-design` | `~~blackboard`, `~~knowledge base` |
+
+> The v2 skills (architecture-review, api-design, database-design, performance-review,
+> security-review, threat-model, requirements-analysis, task-decomposition, prompt-review,
+> rag-review, hallucination-audit) reference additional placeholders inline (`~~observability`,
+> `~~database`, `~~eval harness`, `~~RAG spoke`, `~~web research`). Those resolve to whatever you
+> connect; only the spoke-backed ones (`~~code-graph`, `~~scar-memory`, `~~blackboard`) ship with
+> a Machine OS engine today.
 
 ---
 
 ## Machine OS spokes
 
 The Machine OS repos can themselves be connected as MCP servers, satisfying these
-placeholders with your own engines. The first planned spoke maps the
-`~~knowledge base` placeholder onto [rag-knowledge-engine](https://github.com/shubham0086/rag-knowledge-engine)
-so that skills like `/architecture` and `/system-design` can search a real indexed
-corpus of prior decisions. That spoke is on the roadmap and not wired up yet; the
+placeholders with your own engines. Install them together via the **`ai-engineering-tools`**
+plugin, or point any MCP client at them directly with an `mcp.json` entry.
+
+**Built and shipping:**
+
+| Spoke | Placeholder(s) | Engine | Tools |
+|-------|----------------|--------|-------|
+| **code-graph** | `~~code-graph` | [agent-context](https://github.com/shubham0086/agent-context) | `blast_radius`, `graph_summary` |
+| **agent-memory** | `~~scar-memory`, `~~blackboard` | [mcp-agent-toolkit](https://github.com/shubham0086/mcp-agent-toolkit) | `scar_lookup`, `scar_record`, `blackboard_write/read/list`, `cache_get/set` |
+
+**On the roadmap:** a `~~knowledge base` spoke onto
+[rag-knowledge-engine](https://github.com/shubham0086/rag-knowledge-engine) so `/architecture`,
+`/system-design`, and `/rag-review` can search a real indexed corpus. Not wired up yet; the
 skills work standalone until it is.
 
-When a spoke is added, this table is where it gets documented, so a skill's
-`~~knowledge base` reference always has a clear answer to "which server is that?"
+When a spoke is added, this table is where it gets documented, so a skill's connector reference
+always has a clear answer to "which server is that?"

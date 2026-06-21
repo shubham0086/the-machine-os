@@ -1,17 +1,22 @@
 {
   "name": "ai-engineering-tools",
-  "description": "Optional MCP tool backends for the ai-engineering skills, powered by Machine OS engines. First spoke: code-graph blast radius (agent-context), which supercharges /code-review and /tech-debt with whole-repo structural awareness the diff alone can't show. Install this only if you want the tools; the skills work standalone without it.",
-  "version": "0.1.0",
+  "description": "Optional MCP tool backends for the ai-engineering skills, powered by Machine OS engines. Spokes: code-graph blast radius (agent-context) supercharges /code-review and /tech-debt; agent-memory (mcp-agent-toolkit) gives /debug and /incident-response SCAR failure memory and /agent-design a shared blackboard. Install only if you want the tools; the skills work standalone without them.",
+  "version": "0.2.0",
   "author": {
     "name": "Shubham Prajapati",
     "url": "https://github.com/shubham0086"
   },
   "homepage": "https://my-portfolio-github-io-beta-five.vercel.app",
-  "keywords": ["mcp", "code-graph", "blast-radius", "ai-engineering", "tools"],
+  "keywords": ["mcp", "code-graph", "blast-radius", "scar-memory", "blackboard", "ai-engineering", "tools"],
   "mcpServers": {
     "code-graph": {
       "command": "npx",
       "args": ["-y", "github:shubham0086/agent-context"],
+      "env": { "MACHINE_OS_TIER": "local" }
+    },
+    "agent-memory": {
+      "command": "npx",
+      "args": ["-y", "github:shubham0086/mcp-agent-toolkit"],
       "env": { "MACHINE_OS_TIER": "local" }
     }
   }
