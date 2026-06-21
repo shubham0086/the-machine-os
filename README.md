@@ -29,7 +29,13 @@ engineering skills, available in Claude Code as `/ai-engineering:<skill>`:
 ```bash
 /plugin marketplace add shubham0086/the-machine-os
 /plugin install ai-engineering@machine-os
+/reload-plugins
 ```
+
+The `/reload-plugins` step is what makes the skills appear (the install prints a
+reminder for it). Then invoke any skill with `/ai-engineering:<skill>`, for example
+`/ai-engineering:code-review`, or just describe the task ("review this PR") and the
+matching skill triggers on its own.
 
 | Skill | What it does |
 |-------|--------------|
@@ -48,6 +54,11 @@ Every skill **works standalone**, no setup or keys. Connect your tools (source c
 monitoring, project tracker, and more) and the same skills get **supercharged**: they
 pull the context instead of you pasting it. See
 [CONNECTORS.md](plugins/ai-engineering/CONNECTORS.md) for the map.
+
+> **Status & support.** This is a personal project, maintained in spare time. The skills
+> are content under CC BY 4.0, free to use as-is. Issues and PRs are welcome, but
+> responses may be slow and selective. If something here saves you time, a star is the
+> best thank-you.
 
 ---
 

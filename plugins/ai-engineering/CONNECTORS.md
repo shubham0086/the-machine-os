@@ -26,6 +26,7 @@ can call it automatically.
 | `~~CI/CD` | Build status, test results, and coverage reports | GitHub Actions, CircleCI, Jenkins, GitLab CI |
 | `~~chat` | Posting updates and reading discussion threads | Slack, Discord, Microsoft Teams |
 | `~~incident management` | Paging on-call and tracking live incidents | PagerDuty, Opsgenie, Incident.io |
+| `~~code-graph` | Structural dependency graph + blast radius of a change (who depends on a file) | [agent-context](https://github.com/shubham0086/agent-context) — a Machine OS spoke (see below) |
 
 > Both spellings appear in the wild: `~~source control` and `~~source-control` mean the
 > same connector. The skills use the spaced form.
@@ -36,14 +37,14 @@ can call it automatically.
 
 | Skill | Uses |
 |-------|------|
-| `/code-review` | `~~source control`, `~~project tracker`, `~~knowledge base` |
+| `/code-review` | `~~source control`, `~~project tracker`, `~~knowledge base`, `~~code-graph` |
 | `/debug` | `~~monitoring`, `~~source control`, `~~project tracker` |
 | `/architecture` | `~~knowledge base`, `~~project tracker` |
 | `/system-design` | `~~knowledge base`, `~~source control`, `~~project tracker` |
 | `/deploy-checklist` | `~~source control`, `~~CI/CD`, `~~monitoring` |
 | `/incident-response` | `~~monitoring`, `~~incident management`, `~~chat` |
 | `/standup` | `~~source control`, `~~project tracker`, `~~chat` |
-| `/tech-debt` | `~~source control`, `~~project tracker`, `~~knowledge base` |
+| `/tech-debt` | `~~source control`, `~~project tracker`, `~~knowledge base`, `~~code-graph` |
 | `/testing-strategy` | `~~source control`, `~~CI/CD`, `~~project tracker` |
 | `/documentation` | `~~source control`, `~~knowledge base`, `~~project tracker` |
 

@@ -13,6 +13,14 @@
       "version": "1.0.0",
       "homepage": "https://my-portfolio-github-io-beta-five.vercel.app",
       "keywords": ["ai-engineering", "code-review", "debugging", "architecture", "incident-response", "skills", "mcp"]
+    },
+    {
+      "name": "ai-engineering-tools",
+      "source": "./plugins/ai-engineering-tools",
+      "description": "Optional MCP tool backends for the ai-engineering skills. First spoke: code-graph blast radius (agent-context) for /code-review and /tech-debt. Install only if you want the tools; the skills work standalone.",
+      "version": "0.1.0",
+      "homepage": "https://my-portfolio-github-io-beta-five.vercel.app",
+      "keywords": ["mcp", "code-graph", "blast-radius", "tools"]
     }
   ]
 }

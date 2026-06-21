@@ -38,6 +38,7 @@ If no specific file or URL is provided, ask what to review.
 │  + Source control: Pull PR diff automatically                    │
 │  + Project tracker: Link findings to tickets                     │
 │  + Knowledge base: Check against team coding standards           │
+│  + Code graph: See the blast radius of each changed file         │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -111,6 +112,11 @@ If **~~project tracker** is connected:
 
 If **~~knowledge base** is connected:
 - Check changes against team coding standards and style guides
+
+If **~~code-graph** is connected (e.g. the [agent-context](https://github.com/shubham0086/agent-context) spoke):
+- For each changed file, call it to get the blast radius — the files that depend on it
+- Flag changes to high-dependent files and list the call sites that must be re-checked
+- Catch breaking changes the diff alone cannot show (a signature change in a file 12 others import)
 
 ## Tips
 
