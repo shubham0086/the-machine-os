@@ -1,11 +1,11 @@
 {
   "name": "ai-engineering",
-  "description": "22 engineering skills across 3 tiers (Engineering, Security & Operations, Intelligence) for AI IDEs. Includes code-review, architecture-review, security-review, threat-model, rag-review, hallucination-audit, task-decomposition, and more. Every skill follows a shared contract (machine_output + skill graph), works standalone, and gets supercharged when you connect your tools (see CONNECTORS.md and SKILL-CONTRACT.md).",
-  "version": "2.0.0",
+  "description": "23 engineering skills across 3 tiers (Engineering, Security & Operations, Intelligence) for AI IDEs. Includes code-review, architecture-review, security-review, threat-model, rag-review, document-extraction, hallucination-audit, task-decomposition, and more. Every skill follows a shared contract (machine_output + skill graph), works standalone, and gets supercharged when you connect your tools (see CONNECTORS.md and SKILL-CONTRACT.md).",
+  "version": "2.1.0",
   "author": {
     "name": "Shubham Prajapati",
     "url": "https://github.com/shubham0086"
   },
   "homepage": "https://my-portfolio-github-io-beta-five.vercel.app",
-  "keywords": ["ai-engineering", "code-review", "security-review", "architecture-review", "rag-review", "hallucination-audit", "task-decomposition", "skills"]
+  "keywords": ["ai-engineering", "code-review", "security-review", "architecture-review", "rag-review", "document-extraction", "hallucination-audit", "task-decomposition", "skills"]
 }

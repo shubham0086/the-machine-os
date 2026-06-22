@@ -26,16 +26,17 @@ extracted the patterns into small repos you can run in a minute. This is the map
 Turn your AI IDE into a senior engineer's workbench. There are two pieces, and you
 only need the first:
 
-1. **ai-engineering** : 22 engineering skills across 3 tiers. Pure prompts, work standalone, no setup.
+1. **ai-engineering** : 23 engineering skills across 3 tiers. Pure prompts, work standalone, no setup.
 2. **ai-engineering-tools** *(optional)* : MCP tool backends that supercharge the skills
-   with things a prompt alone can't see (today: whole-repo blast radius).
+   with things a prompt alone can't see (today: whole-repo blast radius, failure memory,
+   and PDF→validated-JSON extraction).
 
 ### Prerequisites
 
 | For | You need |
 |-----|----------|
 | The skills (step 1) | [Claude Code](https://claude.com/claude-code) v2.1.3 or newer. Nothing else, no keys. |
-| The optional tools (step 2) | [Node.js](https://nodejs.org) 18+ on your PATH (the tools run via `npx`). |
+| The optional tools (step 2) | [Node.js](https://nodejs.org) 18+ for the Node spokes (run via `npx`), plus [uv](https://docs.astral.sh/uv/) for the Python `agent-extractor` spoke (runs via `uvx`). |
 
 ### Step 1 : install the skills (free, no keys)
 
@@ -46,7 +47,7 @@ only need the first:
 ```
 
 The `/reload-plugins` step is what makes the skills appear (the install prints a
-reminder for it). All 22 then show up namespaced as `/ai-engineering:<skill>`.
+reminder for it). All 23 then show up namespaced as `/ai-engineering:<skill>`.
 
 The skills are organized into three tiers. The tier is metadata (a `tier:` field), not a
 folder, so install stays one step. Every skill follows the
@@ -90,6 +91,7 @@ network.
 | `/agent-design` | Design or review an agent: tools, control loop, guardrails, HITL |
 | `/prompt-review` | Treat a prompt as a contract: clarity, output shape, failure handling |
 | `/rag-review` | Decide the retrieval strategy first, then review the pipeline |
+| `/document-extraction` | Decide the extraction strategy, then turn messy PDFs into validated structured JSON |
 | `/hallucination-audit` | Claim-by-claim groundedness check on any generated text |
 
 ### Step 2 *(optional)* : add the tools to supercharge the skills
@@ -104,8 +106,11 @@ what it can break"*, which the diff alone can never show.
 /reload-plugins
 ```
 
-This plugin adds **no new slash commands**. It runs a small MCP server (`code-graph`)
-in the background; the skills call it automatically when they need it. Requires Node 18+.
+This plugin adds **no new slash commands**. It runs small MCP servers (`code-graph`,
+`agent-memory`, and `agent-extractor`) in the background; the skills call them
+automatically when they need them. The Node spokes need Node 18+; the Python
+`agent-extractor` spoke runs via `uvx`, so it needs [uv](https://docs.astral.sh/uv/) on
+your PATH.
 
 ### How to use it
 
@@ -194,6 +199,7 @@ Each repo isolates one hard problem, extracted from production. Grab the one you
 | An agent's credential gets hijacked | [agent-identity](https://github.com/shubham0086/agent-identity) (scoped, short-lived, signed credentials + audit + revocation) | 21 |
 | Agents drift from their rules | [agent-constitution](https://github.com/shubham0086/agent-constitution) (drift detection) | 6 |
 | RAG returns junk | [rag-knowledge-engine](https://github.com/shubham0086/rag-knowledge-engine) (hybrid BM25+vector RRF + rerank + eval) | 25 |
+| Messy PDFs, no clean data to retrieve over | [agent-extractor](https://github.com/shubham0086/agent-extractor) (VLM extract + financial coherence validation) | 24 |
 | Tools need a standard protocol | [mcp-agent-toolkit](https://github.com/shubham0086/mcp-agent-toolkit) (MCP server: blackboard, scars, cache) | 13 |
 | Research a topic end to end | [research-agent](https://github.com/shubham0086/research-agent) (SerpAPI + Tavily + Brave + DDG fallback) | 9 |
 | Turn a URL into structured data | [content-analyzer](https://github.com/shubham0086/content-analyzer) (summary, sentiment, quality score) | 4 |
@@ -259,6 +265,7 @@ graph TD
 | Agents drifting and repeating failures | Anti-drift rules + a repeat-failure guard (SCAR) | agent-constitution, Agent-Scars |
 | Prompt injection and secret leakage | Input and output guardrails, tested against real payloads | agentkernel |
 | RAG returning irrelevant chunks | Hybrid BM25 + vector retrieval, RRF fusion, cross-encoder rerank | rag-knowledge-engine |
+| Documents that are pictures of tables, not text | VLM extraction + schema + arithmetic coherence validation | agent-extractor |
 | Tools with no shared protocol | An MCP server exposing blackboard, memory, and cache | mcp-agent-toolkit |
 | Unattended agents shipping unsafe behaviour | Pre-deploy simulation: adversarial scenarios, SLO + regression gates | agent-sim |
 | Hijacked agent credentials (confused deputy) | Scoped, short-lived, signed identities + audit + revocation | agent-identity |

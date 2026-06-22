@@ -29,6 +29,7 @@ can call it automatically.
 | `~~code-graph` | Structural dependency graph + blast radius of a change (who depends on a file) | [agent-context](https://github.com/shubham0086/agent-context) — a Machine OS spoke (see below) |
 | `~~scar-memory` | Failure memory: has this error been seen and resolved before? | [mcp-agent-toolkit](https://github.com/shubham0086/mcp-agent-toolkit) `scar_lookup` / `scar_record` — a Machine OS spoke (see below) |
 | `~~blackboard` | Shared state store for multi-agent runs (write/read/list artifacts) | [mcp-agent-toolkit](https://github.com/shubham0086/mcp-agent-toolkit) `blackboard_*` (+ `cache_*` for LLM response caching) — a Machine OS spoke |
+| `~~extractor` | Turn a PDF/scan into validated structured JSON (render → VLM extract → validate) | [agent-extractor](https://github.com/shubham0086/agent-extractor) `extract_page` / `extract_document` / `list_schemas` — a Machine OS spoke (see below) |
 
 > Both spellings appear in the wild: `~~source control` and `~~source-control` mean the
 > same connector. The skills use the spaced form.
@@ -50,13 +51,14 @@ can call it automatically.
 | `/testing-strategy` | `~~source control`, `~~CI/CD`, `~~project tracker` |
 | `/documentation` | `~~source control`, `~~knowledge base`, `~~project tracker` |
 | `/agent-design` | `~~blackboard`, `~~knowledge base` |
+| `/document-extraction` | `~~extractor`, `~~eval harness` |
 
 > The v2 skills (architecture-review, api-design, database-design, performance-review,
 > security-review, threat-model, requirements-analysis, task-decomposition, prompt-review,
 > rag-review, hallucination-audit) reference additional placeholders inline (`~~observability`,
 > `~~database`, `~~eval harness`, `~~RAG spoke`, `~~web research`). Those resolve to whatever you
-> connect; only the spoke-backed ones (`~~code-graph`, `~~scar-memory`, `~~blackboard`) ship with
-> a Machine OS engine today.
+> connect; only the spoke-backed ones (`~~code-graph`, `~~scar-memory`, `~~blackboard`,
+> `~~extractor`) ship with a Machine OS engine today.
 
 ---
 
@@ -72,6 +74,11 @@ plugin, or point any MCP client at them directly with an `mcp.json` entry.
 |-------|----------------|--------|-------|
 | **code-graph** | `~~code-graph` | [agent-context](https://github.com/shubham0086/agent-context) | `blast_radius`, `graph_summary` |
 | **agent-memory** | `~~scar-memory`, `~~blackboard` | [mcp-agent-toolkit](https://github.com/shubham0086/mcp-agent-toolkit) | `scar_lookup`, `scar_record`, `blackboard_write/read/list`, `cache_get/set` |
+| **agent-extractor** | `~~extractor` | [agent-extractor](https://github.com/shubham0086/agent-extractor) | `extract_page`, `extract_document`, `list_schemas` |
+
+> **Note:** agent-extractor is a **Python** spoke launched via `uvx` (the others are Node via
+> `npx`). The `ai-engineering-tools` plugin wires it the same way; you need [uv](https://docs.astral.sh/uv/)
+> on your PATH for that one spoke. It backs the `/document-extraction` skill.
 
 **On the roadmap:** a `~~knowledge base` spoke onto
 [rag-knowledge-engine](https://github.com/shubham0086/rag-knowledge-engine) so `/architecture`,
