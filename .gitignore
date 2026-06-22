@@ -13,6 +13,9 @@ node_modules/
 .DS_Store
 *.log
 
+# Desktop skill build artifacts
+dist/
+
 # Raw planning/discussion dumps stay out of the public handbook
 *Disscussion*.txt
 *discussion*.txt
