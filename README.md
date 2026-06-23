@@ -12,6 +12,7 @@ extracted the patterns into small repos you can run in a minute. This is the map
 [![Tests](https://img.shields.io/badge/tests-120%2B-10b981.svg)]()
 [![Runs offline](https://img.shields.io/badge/most%20repos-run%20offline-orange.svg)]()
 [![License: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-blue.svg)](LICENSE)
+[![Visitors](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fshubham0086%2Fthe-machine-os&count_bg=%2379C0FF&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=Visitors&edge_flat=false)](https://hits.seeyoufarm.com)
 
 <br>
 
@@ -36,7 +37,7 @@ only need the first:
 | For | You need |
 |-----|----------|
 | The skills (step 1) | [Claude Code](https://claude.com/claude-code) v2.1.3 or newer. Nothing else, no keys. |
-| The optional tools (step 2) | [Node.js](https://nodejs.org) 18+ for the Node spokes (run via `npx`), plus [uv](https://docs.astral.sh/uv/) for the Python `agent-extractor` spoke (runs via `uvx`). |
+| The optional tools (step 2) | [Node.js](https://nodejs.org) 18+ for the Node spokes (run via `npx`), plus [uv](https://docs.astral.sh/uv/) for the Python `agent-extractor` spoke (runs via `uvx`)[...]
 
 ### Step 1 : install the skills (free, no keys)
 
@@ -192,7 +193,7 @@ Each repo isolates one hard problem, extracted from production. Grab the one you
 
 | Problem | Repo | Tests |
 |---------|------|-------|
-| Agents forget across sessions | [Agent-Scars](https://github.com/shubham0086/Agent-Scars) (failure memory) · [Agent-Recall](https://github.com/shubham0086/Agent-Recall) (solution memory) | 7 · 9 |
+| Agents forget across sessions | [Agent-Scars](https://github.com/shubham0086/Agent-Scars) (failure memory) · [Agent-Recall](https://github.com/shubham0086/Agent-Recall) (solution memory) | 7 |
 | Token waste re-reading code | [Agent-Context](https://github.com/shubham0086/Agent-Context) (dependency graph + blast radius) | 6 |
 | One LLM provider goes down | [Agent-Routing](https://github.com/shubham0086/Agent-Routing) (multi-provider failover + circuit breaker) | 23 |
 | An unattended agent ships unsafe behaviour | [agent-sim](https://github.com/shubham0086/agent-sim) (pre-deploy simulation: adversarial scenarios, SLO + regression gates) | 15 |
