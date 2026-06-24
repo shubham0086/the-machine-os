@@ -1,0 +1,20 @@
+{
+  "_comment": "Aggregate cross-runtime MCP registration for The Machine OS spokes. Same stdio mcpServers shape used by Cursor, Cline, Codex, and Claude. Copy the entries you want into your runtime's MCP config (see ../mcp/README.md). Node spokes launch via npx; Python spokes via uvx.",
+  "mcpServers": {
+    "code-graph": {
+      "command": "npx",
+      "args": ["-y", "github:shubham0086/agent-context"],
+      "env": { "MACHINE_OS_TIER": "local" }
+    },
+    "agent-memory": {
+      "command": "npx",
+      "args": ["-y", "github:shubham0086/mcp-agent-toolkit"],
+      "env": { "MACHINE_OS_TIER": "local" }
+    },
+    "agent-extractor": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/shubham0086/agent-extractor", "agent-extractor"],
+      "env": { "MACHINE_OS_TIER": "local" }
+    }
+  }
+}
