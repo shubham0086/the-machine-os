@@ -12,7 +12,11 @@ extracted the patterns into small repos you can run in a minute. This is the map
 [![Tests](https://img.shields.io/badge/tests-120%2B-10b981.svg)]()
 [![Runs offline](https://img.shields.io/badge/most%20repos-run%20offline-orange.svg)]()
 [![License: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-blue.svg)](LICENSE)
-[![Visitors](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fshubham0086%2Fthe-machine-os&count_bg=%2379C0FF&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=Visitors&edge_flat=false)](https://hits.seeyoufarm.com)
+
+[![Stars](https://img.shields.io/github/stars/shubham0086/the-machine-os?style=flat&color=6366f1&logo=github)](https://github.com/shubham0086/the-machine-os/stargazers)
+[![Forks](https://img.shields.io/github/forks/shubham0086/the-machine-os?style=flat&color=8b5cf6&logo=github)](https://github.com/shubham0086/the-machine-os/network/members)
+[![Last commit](https://img.shields.io/github/last-commit/shubham0086/the-machine-os?style=flat&color=10b981&logo=git&logoColor=white)](https://github.com/shubham0086/the-machine-os/commits)
+[![Visitors](https://visitor-badge.laobi.icu/badge?page_id=shubham0086.the-machine-os&left_text=visitors&left_color=555555&right_color=79C0FF)](https://github.com/shubham0086/the-machine-os)
 
 <br>
 
