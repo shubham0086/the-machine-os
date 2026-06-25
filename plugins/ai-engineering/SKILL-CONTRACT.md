@@ -12,6 +12,31 @@ This is what turns a skill library into a skill network.
 
 ---
 
+## 0. Before acting (shared preamble — applies to every skill)
+
+Before running any skill, an agent MUST do these steps in order:
+
+1. **Search memory before building.** Check `memory/` (the-machine-os knowledge base) and any
+   connected knowledge spoke for prior work on this topic. If a relevant prior artifact exists,
+   load it as context rather than regenerating from scratch. Duplicate work is waste.
+
+2. **Check for continuation.** If a `machine_output` block from a prior skill run is in context
+   (e.g. from `requires` inputs), read it before proceeding. Do not re-derive facts already
+   established upstream.
+
+3. **Respect the deterministic / LLM boundary.** Dispatch, routing, and output parsing are
+   deterministic — the LLM decides *what*, not *how* the result is stored or validated. Do not
+   let the LLM change the `machine_output` schema or omit required keys.
+
+4. **Self-improvement note.** After each run, if the skill found a pattern that would have made
+   the analysis faster or more accurate, append it as a comment in `next_actions.reason` so
+   the next run can benefit.
+
+These four steps are the Machine OS equivalent of gstack's `{{PREAMBLE}}` block — applied once
+here so all 23 skills inherit them without duplication.
+
+---
+
 ## 1. Tiers (classification, not folders)
 
 All skills live flat in `skills/`. The tier is **metadata** declared in frontmatter, used
