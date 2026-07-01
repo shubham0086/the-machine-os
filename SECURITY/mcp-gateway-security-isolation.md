@@ -4,12 +4,15 @@
 > `eval()` on remote input. The safe path is not "don't use MCP" — it's "your engine talks to
 > exactly one thing, a gateway you control, and every tool response is untrusted input."
 
-**Status, stated up front:** this is a **designed architecture and a threat model**, decided in a
-2026 transformation review — not shipped code. The honest punchline is itself the lesson: the engine
-is currently *safe because it avoided MCP* (its tools are native code the author wrote and read —
-no remote tool descriptions, no third-party server, no rug-pull surface). The moment you add MCP that
-posture changes, so the adoption plan is gateway-first. Authority comes from getting the threat model
-right *before* connecting anything, not from claiming a gateway already runs.
+**Status, stated up front:** this began as a **designed architecture and a threat model**, decided in
+a 2026 transformation review. It has since been **implemented and tested** as the gateway that mediates
+the autonomous engine's MCP access (all seven controls below, plus a CVE-class capability-laundering
+guard and sampling-denial; covered by three unit suites). The implementation lives in the private SDLC
+engine, not in any public repo — so this handbook page remains the *threat model and rationale*, written
+*before* connecting, which is the only time a threat model is worth anything. The honest origin lesson
+still holds: the engine was first *safe because it avoided MCP* (native tools the author wrote and read —
+no remote descriptions, no third-party server, no rug-pull surface); the gateway is what makes adding MCP
+safe, and it is gateway-first by design.
 
 ## Why MCP needs isolation: the 2026 security reality
 
